@@ -27,14 +27,12 @@ UNSBV - UNITED NATIONS SUPPORT BASE VALENCIA
 				showTitleName: true,
 				showTitleUnits: true,	
 				showTimestampCheckboxValue: true,
-				BackgroundColor: 'lightgrey',
-				BorderRadius: 10,
+				BackgroundColor: "#cdd0db",
+				BorderRadius: 5,
 				DisplayDigits: 2,				
-				EvenRowColor: "lightgrey",
-				OddRowColor: "none",
-				BorderColor: "lightgrey",
-				HeaderBackgroundColor: "grey",
-				HeaderTextColor: "white",
+				BorderColor: "#808080",
+				HeaderBackgroundColor: "#5258a7",
+				HeaderTextColor: "#ffffff",
 			} 
 		},
 		configOptions: function(){
@@ -50,6 +48,12 @@ UNSBV - UNITED NATIONS SUPPORT BASE VALENCIA
 	symbolVis.prototype.init = function(scope, elem) {
 		
 		this.onDataUpdate = dataUpdate;
+		this.onConfigChange = myCustomConfigurationChangeFunction;
+		
+		/*ASSIGN DIFFERENT ID TO THE CUSTOM SYMBOL*/
+		var container = elem.find('#container')[0];
+        var ID = "myCustomSymbol_" + Math.random().toString(36).substr(2, 16);
+        container.id = ID;
 		
 		function dataUpdate(data){
 			
@@ -64,6 +68,13 @@ UNSBV - UNITED NATIONS SUPPORT BASE VALENCIA
 				scope.Units=firstAttribute.Units;
 				scope.Label=firstAttribute.Label;
 			}
+		}
+		
+		//************************************
+		// Function that is called when custom configuration changes are made
+		//************************************
+		function myCustomConfigurationChangeFunction(data) {	
+			//console.log(data);
 		}
 	};
 
